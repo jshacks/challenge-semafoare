@@ -5,7 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "install": "napa printercu/google-maps-utility-library-v3-read-only",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
