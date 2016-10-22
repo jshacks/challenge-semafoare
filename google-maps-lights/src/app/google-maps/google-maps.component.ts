@@ -27,12 +27,19 @@ export class GoogleMapsComponent implements AfterViewInit {
   listaStrazi = 'Strada Mihail Kogălniceanu, Corabia\n' +
     'Strada Frații Golești, Corabia\n' +
     'Strada Caraiman, Corabia\n' +
-    'Strada Câmpului, Corabia';
-  // 'Strada Câmpului, Corabia\n' +
-  // 'Strada Sabinelor, Corabia\n' +
-  // 'Strada Decebal, Corabia';
+    'Strada Câmpului, Corabia\n' +
+    'Strada Câmpului, Corabia\n' +
+    'Strada Sabinelor, Corabia\n' +
+    'Strada Portului, Corabia\n' +
+    'Drumul Carierei, Corabia\n' +
+    'Aleea Garii, Corabia\n' +
+    'Strada Cezar Bolliac, Corabia\n' +
+    'Strada General Tell, Corabia\n' +
+    'Bulevardul 1 Mai, Corabia\n' +
+    'Strada Lascăr Catargiu, Corabia\n' +
+    'Strada Decebal, Corabia';
 
-  constructor(private semafoare:SemafoareService) {
+  constructor(private _semafoare:SemafoareService) {
   }
 
   ngAfterViewInit() {
@@ -41,7 +48,6 @@ export class GoogleMapsComponent implements AfterViewInit {
       this.MarkerWithLabel = CustomMarkerFactory(maps);
     });
   }
-
 
   initMap(maps) {
     this.maps = maps;
@@ -84,7 +90,7 @@ export class GoogleMapsComponent implements AfterViewInit {
       map: this.map
     };
 
-    this.infoWindow = new this.maps.InfoWindow(rendererOptions);
+    // this.infoWindow = new this.maps.InfoWindow(rendererOptions);
     this.directionsDisplay = new this.maps.DirectionsRenderer(rendererOptions)
   }
 
@@ -99,106 +105,148 @@ export class GoogleMapsComponent implements AfterViewInit {
       this.directionsService.route(request, (response, status) => {
         if (status === 'OK') {
           resolve(response);
-          // this.directionsDisplay.setDirections(response);
         } else {
-          reject();
+          reject([response, status]);
         }
       });
     });
   }
 
-  // placeMarkers() {
-  //   this.intersectionLocations = [
-  //     {lat: -31.563910, lng: 147.154312, label: 'A'},
-  //     {lat: -33.718234, lng: 150.363181, label: 'B'},
-  //     {lat: -33.727111, lng: 150.371124, label: 'C'},
-  //     {lat: -33.848588, lng: 151.209834, label: 'D'},
-  //     {lat: -33.851702, lng: 151.216968, label: 'E'}
-  //   ];
-  //
-  //   let markers = this.intersectionLocations.map((location, i) => {
-  //     return new this.maps.Marker({
-  //       position: location,
-  //       label: location.label
-  //     });
-  //   });
-  // }
+  placeMarkers(pointsArr) {
+    this.intersectionLocations = pointsArr.map((point, idx) => {
+      return Object.assign(point, {label: idx + ''});
+    });
+
+    let intersectionMeta = this.intersectionLocations.map(intersection => {
+      let northSouth = Math.random() > 0.5;
+
+      return {
+        id: +intersection.label,
+        name: intersection.label,
+        lat: intersection.lat,
+        lng: intersection.lng,
+        northSouth: northSouth,
+        eastWest: !northSouth,
+        timeInterval: this._getRandomInt(3, 9) * 1000,
+        nextChange: Math.round(Math.random() * 3 * 1000)
+      }
+    });
+
+   console.log(JSON.stringify(intersectionMeta, null, 4));
+
+    let markers = pointsArr.map((location, i) => {
+      return new this.maps.Marker({
+        position: location,
+        label: location.label,
+        map: this.map
+      });
+    });
+
+    // let markerCluster = new MarkerClusterer(this.map, markers,
+    //   {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+  }
+
   setDirections(start, end) {
-    // if(this.intervalId){
-    //   clearInterval(this.intervalId);
-    // }
-    return this.getRoute(start, end)
-      .then((response) => {
-        return this.semafoare.getSemafoare(response.routes[0].legs[0].steps).then((semaforList:any[]) => {
-          console.log('semaforlist', semaforList);
-          this.directionsDisplay.setDirections(response);
+    return this
+      .getRoute(start, end)
+      .then(response => {
+          return this._semafoare.getSemafoare(response.routes[0].legs[0].steps).then((semaforList:any[]) => {
+            console.log('semaforlist', semaforList);
+            this.directionsDisplay.setDirections(response);
 
+            var merkerList = semaforList.map((semafor) => {
 
-          var merkerList = semaforList.map((semafor) => {
-
-            var icon = '/assets/img/trafficlight-green.png';
-            if (!semafor.isGreen) {
-              icon = '/assets/img/trafficlight-red.png';
-            }
-
-            return {
-              semafor,
-              marker: new this.MarkerWithLabel({
-                position: {lat: parseFloat(semafor.lat), lng: parseFloat(semafor.lng)},
-                map: this.map,
-                labelContent: "" + (semafor.nextChange / 1000),
-                labelAnchor: this.maps.Point(3, 30),
-                labelClass: "SemaforTimer", // the CSS class for the label
-                labelInBackground: false,
-                icon: icon,
-                width: '10px',
-                height: '10px'
-              })
-            }
-          });
-          console.log('merkerList', merkerList);
-          const UPDATE_INTERVAL = 1000;
-
-
-          setInterval(function () {
-            for (var i = 0; i < merkerList.length; i++) {
-              var m = merkerList[i];
-              var semafor = m.semafor;
-              if (semafor.nextChange <= UPDATE_INTERVAL) {
-                semafor.isGreen = !semafor.isGreen;
-                semafor.nextChange = semafor.timeInterval;
-              } else {
-                semafor.nextChange -= UPDATE_INTERVAL;
-              }
               var icon = '/assets/img/trafficlight-green.png';
               if (!semafor.isGreen) {
                 icon = '/assets/img/trafficlight-red.png';
               }
 
-              m.marker.set("labelContent", "" + (semafor.nextChange / 1000));
+              return {
+                semafor,
+                marker: new this.MarkerWithLabel({
+                  position: {lat: parseFloat(semafor.lat), lng: parseFloat(semafor.lng)},
+                  map: this.map,
+                  labelContent: "" + (semafor.nextChange / 1000),
+                  labelAnchor: this.maps.Point(3, 30),
+                  labelClass: "SemaforTimer", // the CSS class for the label
+                  labelInBackground: false,
+                  icon: icon,
+                  width: '10px',
+                  height: '10px'
+                })
+              }
+            });
+            console.log('merkerList', merkerList);
+            const UPDATE_INTERVAL = 1000;
 
-              m.marker.set("icon", icon);
-            }
-          }, UPDATE_INTERVAL);
 
+            setInterval(function () {
+              for (var i = 0; i < merkerList.length; i++) {
+                var m = merkerList[i];
+                var semafor = m.semafor;
+                if (semafor.nextChange <= UPDATE_INTERVAL) {
+                  semafor.isGreen = !semafor.isGreen;
+                  semafor.nextChange = semafor.timeInterval;
+                } else {
+                  semafor.nextChange -= UPDATE_INTERVAL;
+                }
+                var icon = '/assets/img/trafficlight-green.png';
+                if (!semafor.isGreen) {
+                  icon = '/assets/img/trafficlight-red.png';
+                }
 
-        })
-      })
+                m.marker.set("labelContent", "" + (semafor.nextChange / 1000));
+
+                m.marker.set("icon", icon);
+              }
+            }, UPDATE_INTERVAL);
+          });
+        },
+        error => {
+          console.error(error);
+        });
   }
 
   getIntersectionsList() {
-    let listaStrazi = this.listaStrazi.split('\n');
-    let routes = [];
+    let listaStrazi = this.listaStrazi.split('\n'),
+      routes = [];
 
     this._getPossibleRoutes(routes, listaStrazi, 0);
 
-    let routePromises:Promise<RouteResponse>[] = routes.map(route => this.getRoute(route.start, route.end));
+    let results = [];
+    console.log(routes.length);
+    this._queuePromises(routes, results, 0);
+  }
 
-    Promise
-      .all(routePromises)
-      .then((results:RouteResponse[]) => {
-        this._collectPoints(results);
-      });
+  private _getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  private _queuePromises(routes, results, idx) {
+    let queryLimit = 2,
+      timeLimit = 2000,
+      routePromises:Promise<RouteResponse>[] = routes
+        .slice(idx * queryLimit, (idx + 1) * queryLimit)
+        .map(route => this.getRoute(route.start, route.end));
+
+    setTimeout(() => {
+      Promise
+        .all(routePromises)
+        .then(res => {
+          console.log(idx);
+          results.push(...res);
+
+          if (results.length === routes.length) {
+            this._collectPoints(results);
+          } else {
+            this._queuePromises(routes, results, idx + 1);
+          }
+        });
+    }, timeLimit);
   }
 
   private _getPossibleRoutes(routesArr:any[], pointsArr:any[], idx:number) {
@@ -217,8 +265,33 @@ export class GoogleMapsComponent implements AfterViewInit {
     let points = [];
 
     routes.forEach(route => {
-      // route.routes.
+      route.routes[0].legs[0].steps.forEach(step => {
+        let startLocationPoint = {
+          lat: step.start_location.lat(),
+          lng: step.start_location.lng()
+        };
+        let endLocationPoint = {
+          lat: step.end_location.lat(),
+          lng: step.end_location.lng()
+        };
+
+        this._includeInPointArr(points, startLocationPoint, endLocationPoint);
+      });
     });
+
+    this.placeMarkers(points);
+  }
+
+  private _includeInPointArr(pointArr, ...points) {
+    points.forEach(point => {
+      if (!this._isPointInArr(pointArr, point)) {
+        pointArr.push(point);
+      }
+    });
+  }
+
+  private _isPointInArr(pointArr, point) {
+    return pointArr.some(pt => pt.lat === point.lat && pt.lng === point.lng);
   }
 
   // handleLocationError(browserHasGeolocation, infoWindow, pos) {

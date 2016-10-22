@@ -28,13 +28,13 @@ export interface Duration {
 }
 
 export interface EndLocation {
-  lat:number;
-  lng:number;
+  lat:() => number;
+  lng:() => number;
 }
 
 export interface StartLocation {
-  lat:number;
-  lng:number;
+  lat:() => number;
+  lng:() => number;
 }
 
 export interface Distance2 {
@@ -48,8 +48,8 @@ export interface Duration2 {
 }
 
 export interface EndLocation2 {
-  lat:number;
-  lng:number;
+  lat:() => number;
+  lng:() => number;
 }
 
 export interface Polyline {
@@ -57,28 +57,28 @@ export interface Polyline {
 }
 
 export interface StartLocation2 {
-  lat:number;
-  lng:number;
+  lat:() => number;
+  lng:() => number;
 }
 
 export interface Path {
-  lat:number;
-  lng:number;
+  lat:() => number;
+  lng:() => number;
 }
 
 export interface LatLng {
-  lat:number;
-  lng:number;
+  lat:() => number;
+  lng:() => number;
 }
 
 export interface StartPoint {
-  lat:number;
-  lng:number;
+  lat:() => number;
+  lng:() => number;
 }
 
 export interface EndPoint {
-  lat:number;
-  lng:number;
+  lat:() => number;
+  lng:() => number;
 }
 
 export interface Step {
@@ -111,8 +111,8 @@ export interface Leg {
 }
 
 export interface OverviewPath {
-  lat:number;
-  lng:number;
+  lat:() => number;
+  lng:() => number;
 }
 
 export interface Route {

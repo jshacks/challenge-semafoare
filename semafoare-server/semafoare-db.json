@@ -1,42 +1,612 @@
 [
     {
-        "id": "1",
-        "name": "Frati-Golesti_Lascar-Catargiu",
-        "lat": 43.7773557,
-        "lng": 24.5049473,
+        "id": 0,
+        "name": "0",
+        "lat": 43.78036669999999,
+        "lng": 24.504575700000032,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 5000,
+        "nextChange": 2645
+    },
+    {
+        "id": 1,
+        "name": "1",
+        "lat": 43.7801421,
+        "lng": 24.500836700000036,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 5000,
+        "nextChange": 2510
+    },
+    {
+        "id": 2,
+        "name": "2",
+        "lat": 43.7771345,
+        "lng": 24.501217600000018,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 7000,
+        "nextChange": 573
+    },
+    {
+        "id": 3,
+        "name": "3",
+        "lat": 43.7770947,
+        "lng": 24.500636900000018,
         "northSouth": true,
         "eastWest": false,
-        "timeInterval": 30000,
-        "nextChange": 1000
+        "timeInterval": 4000,
+        "nextChange": 912
     },
     {
-        "id": "2",
-        "name": "Lascar-Catargiu_Mihail-Cogalniceanu",
-        "lat": 43.78036669999999,
-        "lng": 24.5045757,
-        "northSouth": false,
-        "eastWest": true,
-        "timeInterval": 20000,
-        "nextChange": 5000
+        "id": 4,
+        "name": "4",
+        "lat": 43.77987479999999,
+        "lng": 24.497111099999984,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 3000,
+        "nextChange": 2795
     },
     {
-        "id": "3",
-        "name": "Buggy",
-        "lat": 43.780580,
-        "lng": 24.508356,
-        "northSouth": false,
-        "eastWest": true,
-        "timeInterval": 20000,
-        "nextChange": 5000
+        "id": 5,
+        "name": "5",
+        "lat": 43.7778801,
+        "lng": 24.497355200000015,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 9000,
+        "nextChange": 344
     },
     {
-        "id": "4",
-        "name": "Buggy2",
-        "lat": 43.779377,
-        "lng": 24.504955,
+        "id": 6,
+        "name": "6",
+        "lat": 43.7808454,
+        "lng": 24.512427900000034,
         "northSouth": false,
         "eastWest": true,
-        "timeInterval": 20000,
-        "nextChange": 5000
+        "timeInterval": 8000,
+        "nextChange": 352
+    },
+    {
+        "id": 7,
+        "name": "7",
+        "lat": 43.7798443,
+        "lng": 24.51254419999998,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 3000,
+        "nextChange": 2479
+    },
+    {
+        "id": 8,
+        "name": "8",
+        "lat": 43.7799139,
+        "lng": 24.525353999999993,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 4000,
+        "nextChange": 1297
+    },
+    {
+        "id": 9,
+        "name": "9",
+        "lat": 43.7771052,
+        "lng": 24.524527600000056,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 3000,
+        "nextChange": 2094
+    },
+    {
+        "id": 10,
+        "name": "10",
+        "lat": 43.7771927,
+        "lng": 24.522780499999953,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 3000,
+        "nextChange": 798
+    },
+    {
+        "id": 11,
+        "name": "11",
+        "lat": 43.78186960000001,
+        "lng": 24.51230039999996,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 5000,
+        "nextChange": 1390
+    },
+    {
+        "id": 12,
+        "name": "12",
+        "lat": 43.782069,
+        "lng": 24.515198699999928,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 6000,
+        "nextChange": 862
+    },
+    {
+        "id": 13,
+        "name": "13",
+        "lat": 43.7806843,
+        "lng": 24.50969340000006,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 5000,
+        "nextChange": 2964
+    },
+    {
+        "id": 14,
+        "name": "14",
+        "lat": 43.7736853,
+        "lng": 24.510578500000065,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 6000,
+        "nextChange": 2240
+    },
+    {
+        "id": 15,
+        "name": "15",
+        "lat": 43.7738158,
+        "lng": 24.51244680000002,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 9000,
+        "nextChange": 2274
+    },
+    {
+        "id": 16,
+        "name": "16",
+        "lat": 43.77363860000001,
+        "lng": 24.51238139999998,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 4000,
+        "nextChange": 1745
+    },
+    {
+        "id": 17,
+        "name": "17",
+        "lat": 43.7735072,
+        "lng": 24.51271040000006,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 9000,
+        "nextChange": 2241
+    },
+    {
+        "id": 18,
+        "name": "18",
+        "lat": 43.7717827,
+        "lng": 24.516346099999964,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 5000,
+        "nextChange": 1329
+    },
+    {
+        "id": 19,
+        "name": "19",
+        "lat": 43.7838021,
+        "lng": 24.500332500000013,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 9000,
+        "nextChange": 2255
+    },
+    {
+        "id": 20,
+        "name": "20",
+        "lat": 43.7860391,
+        "lng": 24.484162800000036,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 3000,
+        "nextChange": 1103
+    },
+    {
+        "id": 21,
+        "name": "21",
+        "lat": 43.7884242,
+        "lng": 24.48390889999996,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 8000,
+        "nextChange": 1524
+    },
+    {
+        "id": 22,
+        "name": "22",
+        "lat": 43.7886444,
+        "lng": 24.487272200000007,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 5000,
+        "nextChange": 1768
+    },
+    {
+        "id": 23,
+        "name": "23",
+        "lat": 43.7899,
+        "lng": 24.48933820000002,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 8000,
+        "nextChange": 852
+    },
+    {
+        "id": 24,
+        "name": "24",
+        "lat": 43.7915114,
+        "lng": 24.489230599999928,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 8000,
+        "nextChange": 2017
+    },
+    {
+        "id": 25,
+        "name": "25",
+        "lat": 43.7794101,
+        "lng": 24.490311700000007,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 3000,
+        "nextChange": 284
+    },
+    {
+        "id": 26,
+        "name": "26",
+        "lat": 43.78098199999999,
+        "lng": 24.489666400000033,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 9000,
+        "nextChange": 2298
+    },
+    {
+        "id": 27,
+        "name": "27",
+        "lat": 43.7793629,
+        "lng": 24.50471189999996,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 8000,
+        "nextChange": 1550
+    },
+    {
+        "id": 28,
+        "name": "28",
+        "lat": 43.7791235,
+        "lng": 24.50096009999993,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 7000,
+        "nextChange": 51
+    },
+    {
+        "id": 29,
+        "name": "29",
+        "lat": 43.7781319,
+        "lng": 24.501088900000013,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 8000,
+        "nextChange": 343
+    },
+    {
+        "id": 30,
+        "name": "30",
+        "lat": 43.7831049,
+        "lng": 24.500477300000057,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 4000,
+        "nextChange": 326
+    },
+    {
+        "id": 31,
+        "name": "31",
+        "lat": 43.7783504,
+        "lng": 24.504809199999954,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 4000,
+        "nextChange": 2001
+    },
+    {
+        "id": 32,
+        "name": "32",
+        "lat": 43.7796136,
+        "lng": 24.493366000000037,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 3000,
+        "nextChange": 2530
+    },
+    {
+        "id": 33,
+        "name": "33",
+        "lat": 43.7726084,
+        "lng": 24.49426649999998,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 9000,
+        "nextChange": 2108
+    },
+    {
+        "id": 34,
+        "name": "34",
+        "lat": 43.7722067,
+        "lng": 24.488633400000026,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 4000,
+        "nextChange": 1098
+    },
+    {
+        "id": 35,
+        "name": "35",
+        "lat": 43.7711717,
+        "lng": 24.488469200000054,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 9000,
+        "nextChange": 78
+    },
+    {
+        "id": 36,
+        "name": "36",
+        "lat": 43.7709058,
+        "lng": 24.48572409999997,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 3000,
+        "nextChange": 241
+    },
+    {
+        "id": 37,
+        "name": "37",
+        "lat": 43.7768653,
+        "lng": 24.497478600000022,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 5000,
+        "nextChange": 1705
+    },
+    {
+        "id": 38,
+        "name": "38",
+        "lat": 43.7773557,
+        "lng": 24.504947300000026,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 8000,
+        "nextChange": 92
+    },
+    {
+        "id": 39,
+        "name": "39",
+        "lat": 43.773356,
+        "lng": 24.505450099999962,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 7000,
+        "nextChange": 675
+    },
+    {
+        "id": 40,
+        "name": "40",
+        "lat": 43.7757998,
+        "lng": 24.524944799999957,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 7000,
+        "nextChange": 1964
+    },
+    {
+        "id": 41,
+        "name": "41",
+        "lat": 43.7766235,
+        "lng": 24.493711099999928,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 9000,
+        "nextChange": 744
+    },
+    {
+        "id": 42,
+        "name": "42",
+        "lat": 43.78347300000001,
+        "lng": 24.49291249999999,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 9000,
+        "nextChange": 208
+    },
+    {
+        "id": 43,
+        "name": "43",
+        "lat": 43.7764432,
+        "lng": 24.49131490000002,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 7000,
+        "nextChange": 394
+    },
+    {
+        "id": 44,
+        "name": "44",
+        "lat": 43.7776323,
+        "lng": 24.49361090000002,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 3000,
+        "nextChange": 276
+    },
+    {
+        "id": 45,
+        "name": "45",
+        "lat": 43.77740319999999,
+        "lng": 24.490993900000035,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 4000,
+        "nextChange": 778
+    },
+    {
+        "id": 46,
+        "name": "46",
+        "lat": 43.77885810000001,
+        "lng": 24.49723449999999,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 7000,
+        "nextChange": 564
+    },
+    {
+        "id": 47,
+        "name": "47",
+        "lat": 43.7772323,
+        "lng": 24.51289129999998,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 4000,
+        "nextChange": 2727
+    },
+    {
+        "id": 48,
+        "name": "48",
+        "lat": 43.77250799999999,
+        "lng": 24.492636199999993,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 4000,
+        "nextChange": 1403
+    },
+    {
+        "id": 49,
+        "name": "49",
+        "lat": 43.77360669999999,
+        "lng": 24.50918139999999,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 9000,
+        "nextChange": 122
+    },
+    {
+        "id": 50,
+        "name": "50",
+        "lat": 43.7785851,
+        "lng": 24.508564200000023,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 7000,
+        "nextChange": 2449
+    },
+    {
+        "id": 51,
+        "name": "51",
+        "lat": 43.7838544,
+        "lng": 24.5120584,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 8000,
+        "nextChange": 1651
+    },
+    {
+        "id": 52,
+        "name": "52",
+        "lat": 43.779596,
+        "lng": 24.508421999999996,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 6000,
+        "nextChange": 2781
+    },
+    {
+        "id": 53,
+        "name": "53",
+        "lat": 43.7848662,
+        "lng": 24.48825480000005,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 3000,
+        "nextChange": 991
+    },
+    {
+        "id": 54,
+        "name": "54",
+        "lat": 43.7810037,
+        "lng": 24.489652400000068,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 9000,
+        "nextChange": 739
+    },
+    {
+        "id": 55,
+        "name": "55",
+        "lat": 43.778592,
+        "lng": 24.493484800000033,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 3000,
+        "nextChange": 1911
+    },
+    {
+        "id": 56,
+        "name": "56",
+        "lat": 43.7723903,
+        "lng": 24.48798529999999,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 6000,
+        "nextChange": 601
+    },
+    {
+        "id": 57,
+        "name": "57",
+        "lat": 43.7784108,
+        "lng": 24.49064969999995,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 7000,
+        "nextChange": 964
+    },
+    {
+        "id": 58,
+        "name": "58",
+        "lat": 43.7813713,
+        "lng": 24.489414799999963,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 3000,
+        "nextChange": 1441
+    },
+    {
+        "id": 59,
+        "name": "59",
+        "lat": 43.7816252,
+        "lng": 24.493091800000002,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 6000,
+        "nextChange": 1921
+    },
+    {
+        "id": 60,
+        "name": "60",
+        "lat": 43.7826324,
+        "lng": 24.492983200000026,
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": 9000,
+        "nextChange": 2592
     }
 ]
