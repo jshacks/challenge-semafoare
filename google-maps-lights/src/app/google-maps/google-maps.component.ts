@@ -17,11 +17,17 @@ export class GoogleMapsComponent implements AfterViewInit {
   map;
   maps;
   infoWindow;
-  mapCenter = {lat: 44.427828, lng: 26.103897};
+  mapCenter = {lat: 43.778907, lng: 24.504756};
   intersectionLocations: Intersection[];
   directionsService;
   directionsDisplay;
-  listaStrazi = '';
+  listaStrazi = 'Strada Mihail Kogălniceanu, Corabia\n' +
+    'Strada Frații Golești, Corabia\n' +
+    'Strada Caraiman, Corabia\n' +
+    'Strada Câmpului, Corabia';
+    // 'Strada Câmpului, Corabia\n' +
+    // 'Strada Sabinelor, Corabia\n' +
+    // 'Strada Decebal, Corabia';
 
   constructor() {
   }
@@ -95,25 +101,56 @@ export class GoogleMapsComponent implements AfterViewInit {
     });
   }
 
-  placeMarkers() {
-    this.intersectionLocations = [
-      {lat: -31.563910, lng: 147.154312, label: 'A'},
-      {lat: -33.718234, lng: 150.363181, label: 'B'},
-      {lat: -33.727111, lng: 150.371124, label: 'C'},
-      {lat: -33.848588, lng: 151.209834, label: 'D'},
-      {lat: -33.851702, lng: 151.216968, label: 'E'}
-    ];
+  // placeMarkers() {
+  //   this.intersectionLocations = [
+  //     {lat: -31.563910, lng: 147.154312, label: 'A'},
+  //     {lat: -33.718234, lng: 150.363181, label: 'B'},
+  //     {lat: -33.727111, lng: 150.371124, label: 'C'},
+  //     {lat: -33.848588, lng: 151.209834, label: 'D'},
+  //     {lat: -33.851702, lng: 151.216968, label: 'E'}
+  //   ];
+  //
+  //   let markers = this.intersectionLocations.map((location, i) => {
+  //     return new this.maps.Marker({
+  //       position: location,
+  //       label: location.label
+  //     });
+  //   });
+  // }
 
-    let markers = this.intersectionLocations.map((location, i) => {
-      return new this.maps.Marker({
-        position: location,
-        label: location.label
-      });
+  getIntersectionsList() {
+    let listaStrazi = this.listaStrazi.split('\n');
+    let routes = [];
+
+    this._getPossibleRoutes(routes, listaStrazi, 0);
+
+    let routePromises = routes.map(route => this.getRoute(route.start, route.end));
+
+    Promise
+      .all(routePromises)
+      .then(results => {
+        console.log(results);
     });
   }
 
-  getIntersectionsList() {
-    console.log(this.listaStrazi.split('\n'));
+  private _getPossibleRoutes(routesArr:any[], pointsArr:any[], idx:number) {
+    if (idx === pointsArr.length - 1) {
+      return;
+    }
+
+    for (let i = idx + 1, len = pointsArr.length; i < len; i++) {
+      routesArr.push({start: pointsArr[idx], end: pointsArr[i]});
+    }
+
+    this._getPossibleRoutes(routesArr, pointsArr, idx + 1);
+  }
+
+  private _collectPoints(routes) {
+    let points = [];
+
+    routes.forEach(route => {
+
+    });
   }
 
   // handleLocationError(browserHasGeolocation, infoWindow, pos) {
