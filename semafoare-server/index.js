@@ -1,62 +1,73 @@
 const express = require('express');
+const bodyParser = require('body-parser')
 const app = express();
 const semafoareDb = require('./semafoare').data;
 
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+}));
+
 app.post('/get-semafoare', function (req, res) {
 
-    const startLat = req.query.start_lat;
-    const startLng = req.query.start_lng;
-    const endLat = req.query.end_lat;
-    const endLng = req.query.end_lng;
+    console.log(req.body);
+    const pathSteps = req.body;
 
-    const point1 = {
-        lng: startLng,
-        lat: startLat
-    };
-    const point2 = {
-        lng: endLng,
-        lat: endLat
-    };
+    const responseData = [];
 
-    const messages = [];
+    pathSteps.map((step, i) => {
 
-    semafoareDb.map((semafor, i) => {
-        const currPoint = semafor;
+        const startLat = step.start_location.lat;
+        const startLng = step.start_location.lng;
+        const endLat = step.end_location.lat;
+        const endLng = step.end_location.lng;
 
-        const dxc = currPoint.lng - point1.lng;
-        const dyc = currPoint.lat - point1.lat;
+        const point1 = {
+            lng: startLng,
+            lat: startLat
+        };
+        const point2 = {
+            lng: endLng,
+            lat: endLat
+        };
 
-        const dxl = point2.lng - point1.lng;
-        const dyl = point2.lat - point1.lat;
+        responseData[i] = [];
 
-        const cross = dxc * dyl - dyc * dxl;
+        semafoareDb.map((semafor, j) => {
+            const currPoint = semafor;
 
-        if (cross === 0) {
-            messages[i] = 'On the same line.';
+            const dxc = currPoint.lng - point1.lng;
+            const dyc = currPoint.lat - point1.lat;
 
-            let response = '';
-            if (Math.abs(dxl) >= Math.abs(dyl)) {
-                response =  dxl > 0 ?
-                point1.lng <= currPoint.lng && currPoint.lng <= point2.lng :
-                point2.lng <= currPoint.lng && currPoint.lng <= point1.lng;
+            const dxl = point2.lng - point1.lng;
+            const dyl = point2.lat - point1.lat;
+
+            const cross = dxc * dyl - dyc * dxl;
+
+            if (cross === 0) {
+
+                let response = '';
+                if (Math.abs(dxl) >= Math.abs(dyl)) {
+                    response =  dxl > 0 ?
+                    point1.lng <= currPoint.lng && currPoint.lng <= point2.lng :
+                    point2.lng <= currPoint.lng && currPoint.lng <= point1.lng;
+                }
+                else {
+                    response = dyl > 0 ?
+                    point1.lat <= currPoint.lat && currPoint.lat <= point2.lat :
+                    point2.lat <= currPoint.lat && currPoint.lat <= point1.lat;
+                }
+
+                if (response) {
+                    responseData[i][j] = semafor;
+                }
             }
-            else {
-                response = dyl > 0 ?
-                point1.lat <= currPoint.lat && currPoint.lat <= point2.lat :
-                point2.lat <= currPoint.lat && currPoint.lat <= point1.lat;
-            }
 
-            if (response) {
-                messages[i] += ` & between the points of ${semafor.name}`;
-            }
-        }
-        else {
-            messages[i] = `Not on the same line with ${semafor.name}`;
-        }
+        });
 
     });
 
-    res.send(JSON.stringify(messages));
+    res.send(JSON.stringify(responseData));
 });
 
 app.listen(3000, function () {
