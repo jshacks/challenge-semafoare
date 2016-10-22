@@ -69,7 +69,7 @@ app.post('/get-semafoare', function (req, res) {
                 }
 
                 if (response && responseData.indexOf(semafor) === -1) {
-                    semafor.status = isNorthSouth ? semafor.northSouth : semafor.eastWest;
+                    semafor.isGreen = isNorthSouth ? semafor.northSouth : semafor.eastWest;
                     responseData.push(semafor);
                 }
             }
