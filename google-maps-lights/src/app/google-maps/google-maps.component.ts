@@ -75,7 +75,7 @@ export class GoogleMapsComponent implements AfterViewInit {
     this.directionsDisplay = new this.maps.DirectionsRenderer(rendererOptions)
   }
 
-  calcRoute(start, end) {
+  getRoute(start, end) {
     // let start = 'Strada Postavarului, Bucuresti';
     // let end = 'Piata Unirii, Bucuresti';
     let request = {

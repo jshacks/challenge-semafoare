@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { MaterialModule } from '@angular/material';
 import { GoogleMapsComponent } from './google-maps/google-maps.component';
 
 @NgModule({
@@ -14,7 +15,8 @@ import { GoogleMapsComponent } from './google-maps/google-maps.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
