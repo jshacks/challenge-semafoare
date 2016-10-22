@@ -4,6 +4,7 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
+    "install": "napa printercu/google-maps-utility-library-v3-read-only",
     "start": "ng serve",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
@@ -28,7 +29,8 @@
     "jquery": "^3.1.1",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
-    "zone.js": "^0.6.23"
+    "zone.js": "^0.6.23",
+    "google-maps-utility": "github:printercu/google-maps-utility-library-v3-read-only#master"
   },
   "devDependencies": {
     "@types/jasmine": "^2.2.30",
@@ -41,6 +43,7 @@
     "karma-cli": "^1.0.1",
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
+    "napa": "^2.3.0",
     "protractor": "4.0.5",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",

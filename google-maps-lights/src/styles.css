@@ -3,3 +3,11 @@ html, body {
   margin: 0;
   padding: 0;
 }
+.SemaforTimer {
+  background: white;
+  padding: 1px 3px;
+  width: 13px;
+  border: 1px solid black;
+  margin-left: -10px!important;
+  text-align: center;
+}
