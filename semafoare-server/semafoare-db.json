@@ -1,0 +1,20 @@
+[
+    {
+        "id": "1",
+        "name": "Frati-Golesti_Lascar-Catargiu",
+        "lat": "43.7773557",
+        "lng": "24.5049473",
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": "30000"
+    },
+    {
+        "id": "1",
+        "name": "Lascar-Catargiu_Mihail-Cogalniceanu",
+        "lat": "43.78036669999999",
+        "lng": "24.5045757",
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": "20000"
+    }
+]
