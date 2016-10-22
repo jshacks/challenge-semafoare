@@ -41,7 +41,7 @@ export class GoogleMapsComponent implements AfterViewInit {
 
     this.directionsService = new this.maps.DirectionsService();
 
-    // this.createMap();
+    this.createMap();
 
     // this.placeMarkers();
 
@@ -127,7 +127,7 @@ export class GoogleMapsComponent implements AfterViewInit {
 
     // console.log(routes);
 
-    let routePromises = routes.map(route => this.calcRoute(route.start, route.end));
+    let routePromises = routes.map(route => this.getRoute(route.start, route.end));
 
     Promise
       .all(routePromises)
