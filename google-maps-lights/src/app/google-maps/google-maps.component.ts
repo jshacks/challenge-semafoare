@@ -3,11 +3,10 @@ import {SemafoareService} from '../shared/semafoare/semafoare.service';
 
 import * as googleMapsApi from 'google-maps-api';
 
-interface Intersection {
-  lat:number;
-  lng:number;
-  label:string;
-}
+import {
+  Intersection,
+  RouteResponse
+} from './index';
 
 @Component({
   selector: 'app-google-maps',
@@ -21,7 +20,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   maps;
   infoWindow;
   mapCenter = {lat: 43.778907, lng: 24.504756};
-  intersectionLocations:Intersection[];
+  intersectionLocations: Intersection[];
   directionsService;
   directionsDisplay;
   listaStrazi = 'Strada Mihail Kogălniceanu, Corabia\n' +
@@ -73,7 +72,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   createMap() {
     this.map = new this.maps.Map(document.getElementById('map'), {
       center: this.mapCenter,
-      zoom: 14
+      zoom: 16
     });
 
     let rendererOptions = {
@@ -84,9 +83,7 @@ export class GoogleMapsComponent implements AfterViewInit {
     this.directionsDisplay = new this.maps.DirectionsRenderer(rendererOptions)
   }
 
-  getRoute(start, end):Promise<any> {
-    // let start = 'Strada Postavarului, Bucuresti';
-    // let end = 'Piata Unirii, Bucuresti';
+  getRoute(start, end): Promise<RouteResponse> {
     let request = {
       origin: start,
       destination: end,
@@ -96,9 +93,10 @@ export class GoogleMapsComponent implements AfterViewInit {
     return new Promise((resolve, reject) => {
       this.directionsService.route(request, (response, status) => {
         if (status === 'OK') {
-          console.log(response);
           resolve(response);
           // this.directionsDisplay.setDirections(response);
+        } else {
+          reject();
         }
       });
     });
@@ -136,13 +134,13 @@ export class GoogleMapsComponent implements AfterViewInit {
 
     this._getPossibleRoutes(routes, listaStrazi, 0);
 
-    let routePromises = routes.map(route => this.getRoute(route.start, route.end));
+    let routePromises: Promise<RouteResponse>[] = routes.map(route => this.getRoute(route.start, route.end));
 
     Promise
       .all(routePromises)
-      .then(results => {
-        console.log(results);
-      });
+      .then((results: RouteResponse[]) => {
+        this._collectPoints(results);
+    });
   }
 
   private _getPossibleRoutes(routesArr:any[], pointsArr:any[], idx:number) {
@@ -157,11 +155,11 @@ export class GoogleMapsComponent implements AfterViewInit {
     this._getPossibleRoutes(routesArr, pointsArr, idx + 1);
   }
 
-  private _collectPoints(routes) {
+  private _collectPoints(routes: RouteResponse[]) {
     let points = [];
 
     routes.forEach(route => {
-
+      // route.routes.
     });
   }
 

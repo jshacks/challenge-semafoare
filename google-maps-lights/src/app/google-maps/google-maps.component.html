@@ -16,7 +16,7 @@
                   placeholder="Enter street names to determine intersection points"
                   [(ngModel)]="listaStrazi">
         </textarea>
-        <button md-raised-button (click)="getIntersectionsList">Get intersections list</button>
+        <button md-raised-button (click)="getIntersectionsList()">Get intersections list</button>
         <ul>
           <li *ngFor="let intersection of intersectionLocations; let i = index">
             {{intersection.label}}: {{intersection.lat}} - {{intersection.lng}}

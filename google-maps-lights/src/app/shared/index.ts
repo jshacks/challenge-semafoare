@@ -1,1 +1,1 @@
-export * from './semafoare/semafoare.service';
+export * from './semafoare/index';
