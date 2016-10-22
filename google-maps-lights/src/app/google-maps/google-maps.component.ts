@@ -1,11 +1,12 @@
 import {Component, AfterViewInit} from '@angular/core';
+import {SemafoareService} from '../shared/semafoare/semafoare.service';
 
 import * as googleMapsApi from 'google-maps-api';
 
 interface Intersection {
-  lat: number;
-  lng: number;
-  label: string;
+  lat:number;
+  lng:number;
+  label:string;
 }
 
 @Component({
@@ -14,22 +15,24 @@ interface Intersection {
   styleUrls: ['./google-maps.component.css']
 })
 export class GoogleMapsComponent implements AfterViewInit {
+  startPoint = "Strada Frații Golești 78-80, Corabia 235300";
+  endPoint = "Strada Mihail Kogălniceanu 101, Corabia 235300";
   map;
   maps;
   infoWindow;
   mapCenter = {lat: 43.778907, lng: 24.504756};
-  intersectionLocations: Intersection[];
+  intersectionLocations:Intersection[];
   directionsService;
   directionsDisplay;
   listaStrazi = 'Strada Mihail Kogălniceanu, Corabia\n' +
     'Strada Frații Golești, Corabia\n' +
     'Strada Caraiman, Corabia\n' +
     'Strada Câmpului, Corabia';
-    // 'Strada Câmpului, Corabia\n' +
-    // 'Strada Sabinelor, Corabia\n' +
-    // 'Strada Decebal, Corabia';
+  // 'Strada Câmpului, Corabia\n' +
+  // 'Strada Sabinelor, Corabia\n' +
+  // 'Strada Decebal, Corabia';
 
-  constructor() {
+  constructor(private semafoare:SemafoareService) {
   }
 
   ngAfterViewInit() {
@@ -81,7 +84,7 @@ export class GoogleMapsComponent implements AfterViewInit {
     this.directionsDisplay = new this.maps.DirectionsRenderer(rendererOptions)
   }
 
-  getRoute(start, end) {
+  getRoute(start, end):Promise<any> {
     // let start = 'Strada Postavarului, Bucuresti';
     // let end = 'Piata Unirii, Bucuresti';
     let request = {
@@ -117,6 +120,15 @@ export class GoogleMapsComponent implements AfterViewInit {
   //     });
   //   });
   // }
+  setDirections(start, end) {
+    return this.getRoute(start, end)
+      .then((response) => {
+        return this.semafoare.getSemafoare(response.routes[0].legs[0].steps).then((semaforList) => {
+          console.log('semaforlist', semaforList);
+          this.directionsDisplay.setDirections(response);
+        })
+      })
+  }
 
   getIntersectionsList() {
     let listaStrazi = this.listaStrazi.split('\n');
@@ -130,7 +142,7 @@ export class GoogleMapsComponent implements AfterViewInit {
       .all(routePromises)
       .then(results => {
         console.log(results);
-    });
+      });
   }
 
   private _getPossibleRoutes(routesArr:any[], pointsArr:any[], idx:number) {

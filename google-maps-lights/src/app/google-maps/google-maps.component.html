@@ -7,7 +7,7 @@
       <md-input [(ngModel)]="startPoint" placeholder="Start street" align="end"></md-input>
       <md-input [(ngModel)]="endPoint" placeholder="End street" align="end"></md-input>
       <button md-raised-button color="primary"
-              (click)="getRoute(startPoint, endPoint)">Get route</button>
+              (click)="setDirections(startPoint, endPoint)">Get route</button>
       <div id="controls">
         <textarea name="listaStrazi"
                   id="listaStrazi"
