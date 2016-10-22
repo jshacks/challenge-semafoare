@@ -2,10 +2,11 @@
   display: flex;
 }
 
-#wrapper > div {
-  min-height: 100vh;
-  width: 45%;
-  display: inline-block;
+#wrapper #map {
+  flex: 1;
 }
 
-
+#wrapper md-card-actions {
+  flex: 1;
+  padding-left: 50px;
+}
