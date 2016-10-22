@@ -2,18 +2,38 @@
     {
         "id": "1",
         "name": "Frati-Golesti_Lascar-Catargiu",
-        "lat": "43.7773557",
-        "lng": "24.5049473",
+        "lat": 43.7773557,
+        "lng": 24.5049473,
         "northSouth": true,
         "eastWest": false,
         "timeInterval": 30000,
         "nextChange": 1000
     },
     {
-        "id": "1",
+        "id": "2",
         "name": "Lascar-Catargiu_Mihail-Cogalniceanu",
-        "lat": "43.78036669999999",
-        "lng": "24.5045757",
+        "lat": 43.78036669999999,
+        "lng": 24.5045757,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 20000,
+        "nextChange": 5000
+    },
+    {
+        "id": "3",
+        "name": "Buggy",
+        "lat": 43.780580,
+        "lng": 24.508356,
+        "northSouth": false,
+        "eastWest": true,
+        "timeInterval": 20000,
+        "nextChange": 5000
+    },
+    {
+        "id": "4",
+        "name": "Buggy2",
+        "lat": 43.779377,
+        "lng": 24.504955,
         "northSouth": false,
         "eastWest": true,
         "timeInterval": 20000,

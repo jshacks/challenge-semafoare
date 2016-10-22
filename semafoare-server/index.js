@@ -12,7 +12,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.post('/get-semafoare', function (req, res) {
 
-    console.log(req.body);
     const pathSteps = req.body;
 
     const responseData = [];
@@ -25,28 +24,31 @@ app.post('/get-semafoare', function (req, res) {
         const endLng = step.end_location.lng;
 
         const point1 = {
-            lng: startLng,
-            lat: startLat
+            lng: parseFloat(startLng).toFixed(7),
+            lat: parseFloat(startLat).toFixed(7)
         };
         const point2 = {
-            lng: endLng,
-            lat: endLat
+            lng: parseFloat(endLng).toFixed(7),
+            lat: parseFloat(endLat).toFixed(7)
         };
-
-        responseData[i] = [];
 
         semafoareDb.map((semafor, j) => {
             const currPoint = semafor;
+            currPoint.lng = parseFloat(currPoint.lng).toFixed(7);
+            currPoint.lat = parseFloat(currPoint.lat).toFixed(7);
 
-            const dxc = currPoint.lng - point1.lng;
-            const dyc = currPoint.lat - point1.lat;
+            const dxc = (currPoint.lng - point1.lng) * 10000;
+            const dyc = (currPoint.lat - point1.lat) * 10000;
 
-            const dxl = point2.lng - point1.lng;
-            const dyl = point2.lat - point1.lat;
+            const dxl = (point2.lng - point1.lng) * 10000;
+            const dyl = (point2.lat - point1.lat) * 10000;
 
-            const cross = dxc * dyl - dyc * dxl;
+            const cross = (dxc * dyl - dyc * dxl) / 10000;
 
-            if (cross === 0) {
+            const threshold = 0.000001;
+
+            console.log(semafor.id, i, '||||', Math.abs(cross), threshold, Math.abs(cross) < threshold);
+            if (Math.abs(cross) < threshold) {
 
                 let response = '';
                 if (Math.abs(dxl) >= Math.abs(dyl)) {
@@ -60,8 +62,8 @@ app.post('/get-semafoare', function (req, res) {
                     point2.lat <= currPoint.lat && currPoint.lat <= point1.lat;
                 }
 
-                if (response) {
-                    responseData[i][j] = semafor;
+                if (response && responseData.indexOf(semafor) === -1) {
+                    responseData.push(semafor);
                 }
             }
 

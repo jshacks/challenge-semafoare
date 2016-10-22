@@ -28,7 +28,9 @@ export class SemafoareService {
     const compiledSteps = this.compileSteps(stepList);
     console.log('compiledSteps', compiledSteps);
     return new Promise((resolve, reject) => {
-      this.http.post(`${API}/get-semafoare`, compiledSteps).subscribe(resolve, reject);
+      this.http.post(`${API}/get-semafoare`, compiledSteps).subscribe((res) => {
+        resolve(res.json());
+      }, reject);
     })
   }
 }
