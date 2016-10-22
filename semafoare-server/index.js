@@ -1,8 +1,10 @@
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const app = express();
 const semafoareDb = require('./semafoare').data;
+const cors = require('cors');
 
+app.use(cors());
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
@@ -67,7 +69,7 @@ app.post('/get-semafoare', function (req, res) {
 
     });
 
-    res.send(JSON.stringify(responseData));
+    res.json(responseData);
 });
 
 app.listen(3000, function () {

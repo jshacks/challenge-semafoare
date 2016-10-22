@@ -1,4 +1,5 @@
 import {Component, AfterViewInit} from '@angular/core';
+import {SemafoareService} from '../shared/semafoare/semafoare.service';
 
 import * as googleMapsApi from 'google-maps-api';
 
@@ -16,7 +17,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   directionsService;
   directionsDisplay;
 
-  constructor() {
+  constructor(private semafoare:SemafoareService) {
   }
 
   ngAfterViewInit() {
@@ -69,8 +70,8 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   calcRoute() {
-    let start = 'Strada Postavarului, Bucuresti';
-    let end = 'Piata Unirii, Bucuresti';
+    let start = 'Strada Frații Golești 78-80, Corabia 235300';
+    let end = 'Strada Mihail Kogălniceanu 101, Corabia 235300';
     let request = {
       origin: start,
       destination: end,
@@ -80,6 +81,11 @@ export class GoogleMapsComponent implements AfterViewInit {
     this.directionsService.route(request, (response, status) => {
       if (status === 'OK') {
         console.log(response);
+        this.semafoare.getSemafoare(response.routes[0].legs[0].steps).subscribe((data) => {
+          console.log("data", data);
+        }, (error) => {
+          console.log("error", error);
+        });
         this.directionsDisplay.setDirections(response);
       }
     });
