@@ -23,6 +23,12 @@ app.post('/get-semafoare', function (req, res) {
         const endLat = step.end_location.lat;
         const endLng = step.end_location.lng;
 
+        // calculate direction
+        const latDiff = Math.abs(endLat - startLat);
+        const lngDiff = Math.abs(endLng - startLng);
+
+        var isNorthSouth = latDiff >= lngDiff;
+
         const point1 = {
             lng: parseFloat(startLng).toFixed(7),
             lat: parseFloat(startLat).toFixed(7)
@@ -63,6 +69,7 @@ app.post('/get-semafoare', function (req, res) {
                 }
 
                 if (response && responseData.indexOf(semafor) === -1) {
+                    semafor.status = isNorthSouth ? semafor.northSouth : semafor.eastWest;
                     responseData.push(semafor);
                 }
             }
