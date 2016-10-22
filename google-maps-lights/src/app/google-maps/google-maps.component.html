@@ -1,1 +1,28 @@
-<div id="map"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+
+      <div id="map"></div>
+
+    </div>
+    <div class="col-sm-6">
+
+      <div id="controls">
+        <textarea name="listaStrazi"
+                  id="listaStrazi"
+                  cols="30"
+                  rows="10"
+                  placeholder="Enter street names to determine intersection points"
+                  [(ngModel)]="listaStrazi">
+        </textarea>
+        <button (click)="getIntersectionsList(listaStrazi)">Get intersections list</button>
+        <ul>
+          <li *ngFor="let intersection of intersectionLocations; let i = index">
+            {{intersection.label}}: {{intersection.lat}} - {{intersection.lng}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
