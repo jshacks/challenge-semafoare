@@ -6,8 +6,8 @@
         "lng": "24.5049473",
         "northSouth": true,
         "eastWest": false,
-        "timeInterval": "30000",
-        "nextChange": "1000"
+        "timeInterval": 30000,
+        "nextChange": 1000
     },
     {
         "id": "1",
@@ -16,7 +16,7 @@
         "lng": "24.5045757",
         "northSouth": false,
         "eastWest": true,
-        "timeInterval": "20000",
-        "nextChange": "5000"
+        "timeInterval": 20000,
+        "nextChange": 5000
     }
 ]
