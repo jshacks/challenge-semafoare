@@ -20,9 +20,9 @@
         "northSouth": true,
         "eastWest": false,
         "timeInterval": {
-            "greenYellow": 77000,
+            "greenYellow": 80000,
             "red": 58000
         },
-        "dateOrigin": "2016-10-23 14:40:51"
+        "dateOrigin": "2016-10-23 14:50:57"
     }
 ]
