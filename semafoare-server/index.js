@@ -10,6 +10,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
 
+app.use(express.static('dist'));
+
 app.post('/get-semafoare', function (req, res) {
 
     const pathSteps = req.body;

@@ -1,0 +1,53 @@
+{
+  "name": "semafoare",
+  "version": "0.0.1",
+  "description": "Semafoare jshacks",
+  "engines": {
+    "node": "6.2.0"
+  },
+  "main": "semafoare-server/index.js",
+  "scripts": {
+    "install": "napa git+https://github.com/printercu/google-maps-utility-library-v3-read-only.git",
+    "start": "cd google-maps-lights && ng build --output-path=../semafoare-server/dist && cd ../semafoare-server && node index.js"
+  },
+    "dependencies": {
+        "body-parser": "^1.15.2",
+        "cors": "^2.8.1",
+        "express": "^4.14.0",
+        "@angular/common": "2.0.0",
+        "@angular/compiler": "2.0.0",
+        "@angular/core": "2.0.0",
+        "@angular/forms": "2.0.0",
+        "@angular/http": "2.0.0",
+        "@angular/material": "^2.0.0-alpha.9-3",
+        "@angular/platform-browser": "2.0.0",
+        "@angular/platform-browser-dynamic": "2.0.0",
+        "@angular/router": "3.0.0",
+        "@angular2-material/input": "^2.0.0-alpha.8-2",
+        "bootstrap": "^3.3.7",
+        "core-js": "^2.4.1",
+        "google-maps-api": "^2.0.1",
+        "jquery": "^3.1.1",
+        "rxjs": "5.0.0-beta.12",
+        "ts-helpers": "^1.1.1",
+        "zone.js": "^0.6.23"
+    },
+    "devDependencies": {
+        "@types/jasmine": "^2.2.30",
+        "angular-cli": "1.0.0-beta.15",
+        "codelyzer": "~0.0.26",
+        "jasmine-core": "2.4.1",
+        "jasmine-spec-reporter": "2.5.0",
+        "karma": "1.2.0",
+        "karma-chrome-launcher": "^2.0.0",
+        "karma-cli": "^1.0.1",
+        "karma-jasmine": "^1.0.2",
+        "karma-remap-istanbul": "^0.2.1",
+        "napa": "^2.3.0",
+        "protractor": "4.0.5",
+        "ts-node": "1.2.1",
+        "tslint": "3.13.0",
+        "typescript": "2.0.2"
+    },
+  "license": "MIT"
+}
