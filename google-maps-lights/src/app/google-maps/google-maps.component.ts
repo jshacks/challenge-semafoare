@@ -14,12 +14,12 @@ import {
   styleUrls: ['./google-maps.component.css']
 })
 export class GoogleMapsComponent implements AfterViewInit {
-  startPoint = "Bulevardul Nicolae Bălcescu 34, București 030167";
-  endPoint = "Strada C. A. Rosetti 15, București 030167";
+  startPoint = "Strada Frații Golești 78-80, Corabia 235300";
+  endPoint = "Strada Mihail Kogălniceanu 101, Corabia 235300";
   map;
   maps;
-  // infoWindow;
-  mapCenter = {lat: 44.4407055, lng: 26.0998701};
+  merkerList;
+  mapCenter = {lat: 43.778907, lng: 24.504756};
   intersectionLocations:Intersection[];
   directionsService;
   directionsDisplay;
@@ -122,8 +122,8 @@ export class GoogleMapsComponent implements AfterViewInit {
 
     let intersectionMeta = this.intersectionLocations.map(intersection => {
       let northSouth = Math.random() > 0.5,
-        minTime = 10,
-        maxTime = 20;
+        minTime = 20,
+        maxTime = 40;
 
       return {
         id: +intersection.label,
@@ -132,9 +132,12 @@ export class GoogleMapsComponent implements AfterViewInit {
         lng: intersection.lng.toFixed(7),
         northSouth: northSouth,
         eastWest: !northSouth,
-        timeInterval: this._getRandomInt(minTime, maxTime) * 1000,
-        nextChange: Math.round(Math.random() * minTime * 1000)
-      }
+        timeInterval: {
+          greenYellow: this._getRandomInt(minTime, maxTime) * 1000,
+          red: this._getRandomInt(minTime, maxTime) * 1000
+        },
+        dateOrigin: '2016-10-23 13:42:00'
+      };
     });
 
     console.log(JSON.stringify(intersectionMeta, null, 4));
@@ -146,13 +149,14 @@ export class GoogleMapsComponent implements AfterViewInit {
         map: this.map
       });
     });
-
-    // let markerCluster = new MarkerClusterer(this.map, markers,
-    //   {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-
   }
 
   setDirections(start, end) {
+    if (this.merkerList) {
+      this.merkerList.foreach((marker) => {
+          marker.marker.setMap(null);
+      });
+    }
     return this
       .getRoute(start, end)
       .then(response => {
@@ -160,7 +164,7 @@ export class GoogleMapsComponent implements AfterViewInit {
             // console.log('semaforlist', semaforList);
             this.directionsDisplay.setDirections(response);
 
-            let merkerList = semaforList.map(semafor => {
+            this.merkerList = semaforList.map(semafor => {
               let icon = '/assets/img/trafficlight-green.png';
               if (!semafor.isGreen) {
                 icon = '/assets/img/trafficlight-red.png';
@@ -185,8 +189,8 @@ export class GoogleMapsComponent implements AfterViewInit {
             const UPDATE_INTERVAL = 1000;
 
             setInterval(() => {
-              for (let i = 0; i < merkerList.length; i++) {
-                let m = merkerList[i];
+              for (let i = 0; i < this.merkerList.length; i++) {
+                let m = this.merkerList[i];
                 let semafor = m.semafor;
 
                 if (semafor.nextChange <= UPDATE_INTERVAL) {
@@ -201,7 +205,7 @@ export class GoogleMapsComponent implements AfterViewInit {
                   icon = '/assets/img/trafficlight-red.png';
                 }
 
-                m.marker.set("labelContent", "" + (semafor.nextChange / 1000));
+                m.marker.set("labelContent", "" + (semafor.nextChange / 1000).toFixed(0));
                 m.marker.set("icon", icon);
               }
             }, UPDATE_INTERVAL);
