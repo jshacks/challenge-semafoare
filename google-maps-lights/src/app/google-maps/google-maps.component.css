@@ -1,12 +1,39 @@
 #wrapper {
   display: flex;
+  flex-direction: row;
 }
 
-#wrapper #map {
-  flex: 1;
+@media (max-width: 800px) {
+  #wrapper {
+    flex-direction: column;
+  }
 }
+
+/*#wrapper md-card-actions #map {*/
+  /*flex: 1;*/
+/*}*/
 
 #wrapper md-card-actions {
   flex: 1;
-  padding-left: 50px;
+  min-height: 80vh;
+  /*padding-left: 50px;*/
+}
+
+#wrapper md-card-actions #map {
+  min-height: 80vh;
+}
+
+@media (min-width: 800px) {
+  #wrapper md-card-actions:nth-of-type(2) {
+    padding-left: 50px;
+  }
+}
+
+#wrapper md-card-actions #controls {
+  padding-top:10px;
+}
+
+#wrapper md-card-actions md-input,
+#wrapper md-card-actions #controls textarea{
+  width: 100%;
 }

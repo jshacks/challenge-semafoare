@@ -1,13 +1,19 @@
 <md-card class="container">
-  <md-card-title>Google maps semafoare</md-card-title>
-  <md-card-subtitle>Semafoare</md-card-subtitle>
+  <md-card-title>Google Maps Lights(Semafoare)</md-card-title>
+  <!--<md-card-subtitle>Semafoare</md-card-subtitle>-->
   <md-card-content id="wrapper">
-    <div id="map"></div>
     <md-card-actions>
-      <md-input [(ngModel)]="startPoint" placeholder="Start street" align="end"></md-input>
-      <md-input [(ngModel)]="endPoint" placeholder="End street" align="end"></md-input>
-      <button md-raised-button color="primary"
-              (click)="setDirections(startPoint, endPoint)">Get route</button>
+      <div id="map"></div>
+    </md-card-actions>
+    <md-card-actions>
+      <md-input [(ngModel)]="startPoint" placeholder="Start street"></md-input>
+      <br>
+      <md-input [(ngModel)]="endPoint" placeholder="End street"></md-input>
+      <br>
+      <button md-raised-button
+              color="primary"
+              (click)="setDirections(startPoint, endPoint)">Get route
+      </button>
       <div id="controls">
         <textarea name="listaStrazi"
                   id="listaStrazi"
@@ -17,11 +23,14 @@
                   [(ngModel)]="listaStrazi">
         </textarea>
         <button md-raised-button (click)="getIntersectionsList()">Get intersections list</button>
-        <ul>
-          <li *ngFor="let intersection of intersectionLocations; let i = index">
-            {{intersection.label}}: {{intersection.lat}} - {{intersection.lng}}
-          </li>
-        </ul>
+        <button md-raised-button (click)="toggleMarkers()">Toggle markers</button>
+
+        <md-list>
+          <md-list-item *ngFor="let intersection of intersectionLocations; let i = index"> {{intersection.label}}:
+            {{intersection.lat}} - {{intersection.lng}}
+          </md-list-item>
+        </md-list>
+
       </div>
     </md-card-actions>
 
