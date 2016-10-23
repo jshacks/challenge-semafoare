@@ -11,5 +11,18 @@
             "red": 10000
         },
         "dateOrigin": "2016-10-23 13:42:00"
+    },
+    {
+        "id": 32,
+        "name": "32",
+        "lat": "44.4407055",
+        "lng": "26.0998701",
+        "northSouth": true,
+        "eastWest": false,
+        "timeInterval": {
+            "greenYellow": 20000,
+            "red": 10000
+        },
+        "dateOrigin": "2016-10-23 13:42:00"
     }
 ]
