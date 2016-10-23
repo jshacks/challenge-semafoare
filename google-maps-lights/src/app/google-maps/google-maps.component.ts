@@ -118,7 +118,9 @@ export class GoogleMapsComponent implements AfterViewInit {
     });
 
     let intersectionMeta = this.intersectionLocations.map(intersection => {
-      let northSouth = Math.random() > 0.5;
+      let northSouth = Math.random() > 0.5,
+        minTime = 10,
+        maxTime = 20;
 
       return {
         id: +intersection.label,
@@ -127,8 +129,8 @@ export class GoogleMapsComponent implements AfterViewInit {
         lng: intersection.lng,
         northSouth: northSouth,
         eastWest: !northSouth,
-        timeInterval: this._getRandomInt(3, 9) * 1000,
-        nextChange: Math.round(Math.random() * 3 * 1000)
+        timeInterval: this._getRandomInt(minTime, maxTime) * 1000,
+        nextChange: Math.round(Math.random() * minTime * 1000)
       }
     });
 
@@ -152,12 +154,11 @@ export class GoogleMapsComponent implements AfterViewInit {
       .getRoute(start, end)
       .then(response => {
           return this._semafoare.getSemafoare(response.routes[0].legs[0].steps).then((semaforList:any[]) => {
-            console.log('semaforlist', semaforList);
+            // console.log('semaforlist', semaforList);
             this.directionsDisplay.setDirections(response);
 
-            var merkerList = semaforList.map((semafor) => {
-
-              var icon = '/assets/img/trafficlight-green.png';
+            let merkerList = semaforList.map(semafor => {
+              let icon = '/assets/img/trafficlight-green.png';
               if (!semafor.isGreen) {
                 icon = '/assets/img/trafficlight-red.png';
               }
@@ -177,27 +178,27 @@ export class GoogleMapsComponent implements AfterViewInit {
                 })
               }
             });
-            console.log('merkerList', merkerList);
+            // console.log('merkerList', merkerList);
             const UPDATE_INTERVAL = 1000;
 
+            setInterval(() => {
+              for (let i = 0; i < merkerList.length; i++) {
+                let m = merkerList[i];
+                let semafor = m.semafor;
 
-            setInterval(function () {
-              for (var i = 0; i < merkerList.length; i++) {
-                var m = merkerList[i];
-                var semafor = m.semafor;
                 if (semafor.nextChange <= UPDATE_INTERVAL) {
                   semafor.isGreen = !semafor.isGreen;
                   semafor.nextChange = semafor.timeInterval;
                 } else {
                   semafor.nextChange -= UPDATE_INTERVAL;
                 }
-                var icon = '/assets/img/trafficlight-green.png';
+
+                let icon = '/assets/img/trafficlight-green.png';
                 if (!semafor.isGreen) {
                   icon = '/assets/img/trafficlight-red.png';
                 }
 
                 m.marker.set("labelContent", "" + (semafor.nextChange / 1000));
-
                 m.marker.set("icon", icon);
               }
             }, UPDATE_INTERVAL);

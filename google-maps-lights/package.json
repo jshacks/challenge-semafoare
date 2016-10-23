@@ -4,7 +4,7 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "install": "napa printercu/google-maps-utility-library-v3-read-only",
+    "install": "napa git+https://github.com/printercu/google-maps-utility-library-v3-read-only.git",
     "start": "ng serve --host 0.0.0.0",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
