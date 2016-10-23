@@ -14,12 +14,12 @@ import {
   styleUrls: ['./google-maps.component.css']
 })
 export class GoogleMapsComponent implements AfterViewInit {
-  startPoint = "Strada Frații Golești 78-80, Corabia 235300";
-  endPoint = "Strada Mihail Kogălniceanu 101, Corabia 235300";
+  startPoint = "Bulevardul Nicolae Bălcescu 34, București 030167";
+  endPoint = "Strada C. A. Rosetti 15, București 030167";
   map;
   maps;
   // infoWindow;
-  mapCenter = {lat: 43.778907, lng: 24.504756};
+  mapCenter = {lat: 44.4407055, lng: 26.0998701};
   intersectionLocations:Intersection[];
   directionsService;
   directionsDisplay;
