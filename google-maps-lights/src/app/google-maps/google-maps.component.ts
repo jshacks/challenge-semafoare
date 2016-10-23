@@ -153,7 +153,7 @@ export class GoogleMapsComponent implements AfterViewInit {
 
   setDirections(start, end) {
     if (this.merkerList) {
-      this.merkerList.foreach((marker) => {
+      this.merkerList.forEach((marker) => {
           marker.marker.setMap(null);
       });
     }
