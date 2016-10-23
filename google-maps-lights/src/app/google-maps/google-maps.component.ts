@@ -199,7 +199,7 @@ export class GoogleMapsComponent implements AfterViewInit {
                   icon = '/assets/img/trafficlight-red.png';
                 }
 
-                m.marker.set("labelContent", "" + (semafor.nextChange / 1000));
+                m.marker.set("labelContent", "" + (semafor.nextChange / 1000).toFixed(0));
                 m.marker.set("icon", icon);
               }
             }, UPDATE_INTERVAL);
