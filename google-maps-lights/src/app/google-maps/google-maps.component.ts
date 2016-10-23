@@ -147,8 +147,6 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   setDirections(start, end) {
-    this._deleteTrainingMarkers();
-
     return this
       .getRoute(start, end)
       .then(response => {
@@ -219,13 +217,21 @@ export class GoogleMapsComponent implements AfterViewInit {
     this._queuePromises(routes, results, 0);
   }
 
-  private _deleteTrainingMarkers() {
-    if (this.trainingMarkers && this.trainingMarkers.length) {
-      for (let i = 0; i < this.trainingMarkers.length; i++) {
-        this.trainingMarkers[i].setMap(null);
-      }
-      this.trainingMarkers = [];
+  toggleMarkers() {
+    if (!(this.trainingMarkers && this.trainingMarkers.length)) {
+      return;
     }
+
+    let hide = !!this.trainingMarkers[0].getMap();
+
+    for (let i = 0; i < this.trainingMarkers.length; i++) {
+      if (hide) {
+        this.trainingMarkers[i].setMap(null);
+      } else {
+        this.trainingMarkers[i].setMap(this.map);
+      }
+    }
+    // this.trainingMarkers = [];
   }
 
   private _getRandomInt(min, max) {
