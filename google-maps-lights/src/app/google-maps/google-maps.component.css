@@ -1,9 +1,12 @@
 #wrapper {
   display: flex;
+  flex-direction: column;
 }
 
 #wrapper #map {
   flex: 1;
+  width: 300px;
+  height: 300px;
 }
 
 #wrapper md-card-actions {
