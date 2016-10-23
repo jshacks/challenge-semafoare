@@ -8,8 +8,7 @@
   "main": "semafoare-server/index.js",
   "scripts": {
     "install": "napa git+https://github.com/printercu/google-maps-utility-library-v3-read-only.git",
-      "install-napa": "npm install napa",
-    "start": "install-napa && cd google-maps-lights && ng build --output-path=../semafoare-server/dist && cd ../semafoare-server && node index.js"
+    "start": "cd google-maps-lights && ng build --output-path=../semafoare-server/dist && cd ../semafoare-server && node index.js"
   },
     "dependencies": {
         "body-parser": "^1.15.2",
@@ -31,9 +30,7 @@
         "jquery": "^3.1.1",
         "rxjs": "5.0.0-beta.12",
         "ts-helpers": "^1.1.1",
-        "zone.js": "^0.6.23"
-    },
-    "devDependencies": {
+        "zone.js": "^0.6.23",
         "@types/jasmine": "^2.2.30",
         "angular-cli": "1.0.0-beta.15",
         "codelyzer": "~0.0.26",
