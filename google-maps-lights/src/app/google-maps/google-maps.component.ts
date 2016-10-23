@@ -18,12 +18,13 @@ export class GoogleMapsComponent implements AfterViewInit {
   endPoint = "Strada Mihail Kogălniceanu 101, Corabia 235300";
   map;
   maps;
-  infoWindow;
+  // infoWindow;
   mapCenter = {lat: 43.778907, lng: 24.504756};
   intersectionLocations:Intersection[];
   directionsService;
   directionsDisplay;
   MarkerWithLabel;
+  trainingMarkers;
   listaStrazi = 'Strada Mihail Kogălniceanu, Corabia\n' +
     'Strada Frații Golești, Corabia\n' +
     'Strada Caraiman, Corabia\n' +
@@ -55,10 +56,6 @@ export class GoogleMapsComponent implements AfterViewInit {
     this.directionsService = new this.maps.DirectionsService();
 
     this.createMap();
-
-    // this.placeMarkers();
-
-    // this.calcRoute();
 
     // Try HTML5 geolocation.
     // if (navigator.geolocation) {
@@ -134,9 +131,9 @@ export class GoogleMapsComponent implements AfterViewInit {
       }
     });
 
-   console.log(JSON.stringify(intersectionMeta, null, 4));
+    console.log(JSON.stringify(intersectionMeta, null, 4));
 
-    let markers = pointsArr.map((location, i) => {
+    this.trainingMarkers = pointsArr.map((location, i) => {
       return new this.maps.Marker({
         position: location,
         label: location.label,
@@ -150,6 +147,8 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   setDirections(start, end) {
+    this._deleteTrainingMarkers();
+
     return this
       .getRoute(start, end)
       .then(response => {
@@ -218,6 +217,15 @@ export class GoogleMapsComponent implements AfterViewInit {
     let results = [];
     console.log(routes.length);
     this._queuePromises(routes, results, 0);
+  }
+
+  private _deleteTrainingMarkers() {
+    if (this.trainingMarkers && this.trainingMarkers.length) {
+      for (let i = 0; i < this.trainingMarkers.length; i++) {
+        this.trainingMarkers[i].setMap(null);
+      }
+      this.trainingMarkers = [];
+    }
   }
 
   private _getRandomInt(min, max) {
