@@ -122,8 +122,8 @@ export class GoogleMapsComponent implements AfterViewInit {
       return {
         id: +intersection.label,
         name: intersection.label,
-        lat: intersection.lat,
-        lng: intersection.lng,
+        lat: intersection.lat.toFixed(7),
+        lng: intersection.lng.toFixed(7),
         northSouth: northSouth,
         eastWest: !northSouth,
         timeInterval: this._getRandomInt(minTime, maxTime) * 1000,
