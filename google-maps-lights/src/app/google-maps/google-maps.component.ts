@@ -45,7 +45,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    googleMapsApi('AIzaSyC6pWJudw8NzaDS_H7L2I3SOU9ISbNhJr4', ['places'])().then(maps => {
+    googleMapsApi('AIzaSyC6pWJudw8NzaDS_H7L2I3SOU9ISbNhJr4')().then(maps => {
       this.initMap(maps);
       this.MarkerWithLabel = CustomMarkerFactory(maps);
     });
@@ -58,11 +58,11 @@ export class GoogleMapsComponent implements AfterViewInit {
 
     this.createMap();
 
-    var fromInput = document.querySelector('#fromInput input');
-    var toInput = document.querySelector('#toInput input');
-
-    new maps.places.Autocomplete(fromInput);
-    new maps.places.Autocomplete(toInput);
+    // var fromInput = document.querySelector('#fromInput input');
+    // var toInput = document.querySelector('#toInput input');
+    //
+    // new maps.places.Autocomplete(fromInput);
+    // new maps.places.Autocomplete(toInput);
 
     // Try HTML5 geolocation.
     // if (navigator.geolocation) {
@@ -151,11 +151,11 @@ export class GoogleMapsComponent implements AfterViewInit {
     });
   }
 
-  setDirections() {
-    var fromInput = document.querySelector('#fromInput input');
-    var toInput = document.querySelector('#toInput input');
-    var start = fromInput.value;
-    var end = toInput.value;
+  setDirections(start, end) {
+    // var fromInput = document.querySelector('#fromInput input');
+    // var toInput = document.querySelector('#toInput input');
+    // var start = fromInput.value;
+    // var end = toInput.value;
     if (this.merkerList) {
       clearInterval(this.intervalId);
       this.merkerList.forEach((marker) => {
