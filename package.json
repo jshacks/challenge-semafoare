@@ -8,7 +8,8 @@
   "main": "semafoare-server/index.js",
   "scripts": {
     "install": "napa git+https://github.com/printercu/google-maps-utility-library-v3-read-only.git",
-    "start": "cd google-maps-lights && ng build --output-path=../semafoare-server/dist && cd ../semafoare-server && node index.js"
+      "install-napa": "npm install napa",
+    "start": "install-napa && cd google-maps-lights && ng build --output-path=../semafoare-server/dist && cd ../semafoare-server && node index.js"
   },
     "dependencies": {
         "body-parser": "^1.15.2",
