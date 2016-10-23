@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
-const API = 'http://' + window.location.hostname + ':3000';
+const port = window.location.port ? ':' + window.location.port : '';
+const API = '//' + window.location.hostname + port;
 
 @Injectable()
 export class SemafoareService {
