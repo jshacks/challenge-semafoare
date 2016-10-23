@@ -26,7 +26,6 @@ setInterval(function () {
     for (var i = 0; i < semafoareDb.length; i++) {
         var semafor = semafoareDb[i];
 
-        console.log('aaaaa', semafor);
         if (semafor.nextChange <= UPDATE_INTERVAL) {
             semafor.northSouth = !semafor.northSouth;
             semafor.eastWest = !semafor.northSouth;

@@ -18,6 +18,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   endPoint = "Strada Mihail Kogălniceanu 101, Corabia 235300";
   map;
   maps;
+  merkerList;
   mapCenter = {lat: 43.778907, lng: 24.504756};
   intersectionLocations:Intersection[];
   directionsService;
@@ -145,6 +146,11 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   setDirections(start, end) {
+    if (this.merkerList) {
+      this.merkerList.foreach((marker) => {
+          marker.marker.setMap(null);
+      });
+    }
     return this
       .getRoute(start, end)
       .then(response => {
@@ -152,7 +158,7 @@ export class GoogleMapsComponent implements AfterViewInit {
             // console.log('semaforlist', semaforList);
             this.directionsDisplay.setDirections(response);
 
-            let merkerList = semaforList.map(semafor => {
+            this.merkerList = semaforList.map(semafor => {
               let icon = '/assets/img/trafficlight-green.png';
               if (!semafor.isGreen) {
                 icon = '/assets/img/trafficlight-red.png';
@@ -177,8 +183,8 @@ export class GoogleMapsComponent implements AfterViewInit {
             const UPDATE_INTERVAL = 1000;
 
             setInterval(() => {
-              for (let i = 0; i < merkerList.length; i++) {
-                let m = merkerList[i];
+              for (let i = 0; i < this.merkerList.length; i++) {
+                let m = this.merkerList[i];
                 let semafor = m.semafor;
 
                 if (semafor.nextChange <= UPDATE_INTERVAL) {
