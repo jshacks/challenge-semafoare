@@ -74,6 +74,7 @@ app.post('/get-semafoare', function (req, res) {
 
                 if (response && responseData.indexOf(semafor) === -1) {
                     semafor.isGreen = isNorthSouth ? semafor.northSouth : semafor.eastWest;
+                    semafor.driveDirection = isNorthSouth ? 'northSouth' : 'eastWest';
                     responseData.push(semafor);
                 }
             }

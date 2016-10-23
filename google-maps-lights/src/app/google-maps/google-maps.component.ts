@@ -185,7 +185,7 @@ export class GoogleMapsComponent implements AfterViewInit {
 
                 if (semafor.nextChange <= UPDATE_INTERVAL) {
                   semafor.isGreen = !semafor.isGreen;
-                  semafor.nextChange = semafor.timeInterval;
+                  semafor.nextChange = semafor.driveDirection === 'northSouth' && semafor.isGreen ? semafor.timeInterval.greenYellow : semafor.timeInterval.red;
                 } else {
                   semafor.nextChange -= UPDATE_INTERVAL;
                 }
