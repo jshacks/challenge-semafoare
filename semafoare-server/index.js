@@ -51,7 +51,7 @@ app.post('/get-semafoare', function (req, res) {
 
             const cross = (dxc * dyl - dyc * dxl) / 10000;
 
-            const threshold = 0.000001;
+            const threshold = 0.001;
 
             console.log(semafor.id, i, '||||', Math.abs(cross), threshold, Math.abs(cross) < threshold);
             if (Math.abs(cross) < threshold) {
