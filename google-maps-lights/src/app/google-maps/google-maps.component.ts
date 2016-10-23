@@ -25,6 +25,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   directionsDisplay;
   MarkerWithLabel;
   trainingMarkers;
+  intervalId;
   listaStrazi = 'Strada Mihail Kogălniceanu, Corabia\n' +
     'Strada Frații Golești, Corabia\n' +
     'Strada Caraiman, Corabia\n' +
@@ -153,8 +154,9 @@ export class GoogleMapsComponent implements AfterViewInit {
 
   setDirections(start, end) {
     if (this.merkerList) {
+      clearInterval(this.intervalId);
       this.merkerList.forEach((marker) => {
-          marker.marker.setMap(null);
+        marker.marker.setMap(null);
       });
     }
     return this
@@ -188,7 +190,7 @@ export class GoogleMapsComponent implements AfterViewInit {
             // console.log('merkerList', merkerList);
             const UPDATE_INTERVAL = 1000;
 
-            setInterval(() => {
+            this.intervalId = setInterval(() => {
               for (let i = 0; i < this.merkerList.length; i++) {
                 let m = this.merkerList[i];
                 let semafor = m.semafor;
