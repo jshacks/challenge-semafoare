@@ -104,7 +104,6 @@ export class GoogleMapsComponent implements AfterViewInit {
       destination: end,
       travelMode: 'DRIVING'
     };
-
     return new Promise((resolve, reject) => {
       this.directionsService.route(request, (response, status) => {
         if (status === 'OK') {
@@ -152,7 +151,11 @@ export class GoogleMapsComponent implements AfterViewInit {
     });
   }
 
-  setDirections(start, end) {
+  setDirections() {
+    var fromInput = document.querySelector('#fromInput input');
+    var toInput = document.querySelector('#toInput input');
+    var start = fromInput.value;
+    var end = toInput.value;
     if (this.merkerList) {
       clearInterval(this.intervalId);
       this.merkerList.forEach((marker) => {
